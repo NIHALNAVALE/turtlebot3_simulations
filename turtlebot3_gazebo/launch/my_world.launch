@@ -67,6 +67,7 @@ https://github.com/ROBOTIS-GIT/turtlebot3/tree/master/turtlebot3_navigation/para
 	  <rosparam file="$(find turtlebot3_gazebo)/config/global_costmap_params.yaml" command="load" />
 	  <rosparam file="$(find turtlebot3_gazebo)/config/move_base_params.yaml" command="load" />
 	  <rosparam file="$(find turtlebot3_gazebo)/config/teb_local_planner.yaml" command="load" />
+	<!-- <rosparam file="$(find turtlebot3_navigation)/param/dwa_local_planner_params_waffle_pi.yaml" command="load" /> -->
 	  <remap from="cmd_vel" to="/cmd_vel"/>
 	  <remap from="odom" to="odom"/>
 	  <!-- <param name="DWAPlannerROS/min_vel_x" value="0.0" /> -->
