@@ -77,7 +77,7 @@ https://github.com/ROBOTIS-GIT/turtlebot3/tree/master/turtlebot3_navigation/para
 
 
 <!-- Goal Publisher Script -->
-  <node name="goal_publisher_node" type="goal_publisher.py" output="screen"/>
+  <node name="goal_publisher_node" pkg="turtlebot3_gazebo" type="goal_publisher.py" output="screen"/>
 
 <!-- Rviz -->
 <node type="rviz" name="rviz" pkg="rviz" args="-d $(find turtlebot3_gazebo)/rviz/turtlebot3_gazebo_model.rviz"/>
