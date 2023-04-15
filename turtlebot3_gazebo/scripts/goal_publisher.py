@@ -14,6 +14,8 @@ if __name__ == '__main__':
     # Create a move_base_msgs/MoveBaseActionGoal message
     msg = MoveBaseActionGoal()
 
+    #  http://docs.ros.org/en/fuerte/api/move_base_msgs/html/msg/MoveBaseActionGoal.html
+
     # Fill in the message fields
     msg.header = Header()
     msg.header.seq = 0
