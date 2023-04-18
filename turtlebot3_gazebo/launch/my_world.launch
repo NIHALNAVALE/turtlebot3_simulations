@@ -8,6 +8,9 @@
   <arg name="z_pos" default="0.0"/>
   <arg name="map_file" default="$(find turtlebot3_gazebo)/maps/map.yaml"/>
   <arg name="cmd_vel" default="base_controller/cmd_vel"/>
+
+  <!-- local planner DWA/TEB flag -->
+  <!-- <arg name="DWA" default="true" /> -->
  
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="world_name" value="$(find turtlebot3_gazebo)/worlds/turtlebot3_house.world"/>
@@ -36,25 +39,9 @@
 		<arg name="initial_pose_a" value="0.0"/>
 	</include>
 
-<!-- move base DWA Planner
-https://github.com/ROBOTIS-GIT/turtlebot3/tree/master/turtlebot3_navigation/param -->
+<!-- DWA and TEB local planners -->
 
-<node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
-	  <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />
-	  <rosparam file="$(find turtlebot3_navigation)/param/costmap_common_params_waffle_pi.yaml" command="load" ns="global_costmap" />
-	  <rosparam file="$(find turtlebot3_navigation)/param/costmap_common_params_waffle_pi.yaml" command="load" ns="local_costmap" />
-	  <rosparam file="$(find turtlebot3_navigation)/param/local_costmap_params.yaml" command="load" />
-	  <rosparam file="$(find turtlebot3_navigation)/param/global_costmap_params.yaml" command="load" />
-	  <rosparam file="$(find turtlebot3_navigation)/param/move_base_params.yaml" command="load" />
-	  <rosparam file="$(find turtlebot3_navigation)/param/dwa_local_planner_params_waffle_pi.yaml" command="load" />
-	  <remap from="cmd_vel" to="/cmd_vel"/>
-	  <remap from="odom" to="odom"/>
-	  <param name="DWAPlannerROS/min_vel_x" value="0.0" />
-	</node>
-
-<!-- TEB planner -->
-
-	<!-- <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+	<node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
 	<remap from="cmd_vel" to="$(arg cmd_vel)"/>
     <remap from="map" to="/map"/>
 
@@ -63,21 +50,22 @@ https://github.com/ROBOTIS-GIT/turtlebot3/tree/master/turtlebot3_navigation/para
 
 	  <param name="base_global_planner" value="global_planner/GlobalPlanner" />	
 	  <param name="base_local_planner" value="teb_local_planner/TebLocalPlannerROS" />
+	  <!-- <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" /> -->
 	  <rosparam file="$(find turtlebot3_gazebo)/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
 	  <rosparam file="$(find turtlebot3_gazebo)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
 	  <rosparam file="$(find turtlebot3_gazebo)/config/local_costmap_params.yaml" command="load" />
 	  <rosparam file="$(find turtlebot3_gazebo)/config/global_costmap_params.yaml" command="load" />
 	  <rosparam file="$(find turtlebot3_gazebo)/config/move_base_params.yaml" command="load" />
 	  <rosparam file="$(find turtlebot3_gazebo)/config/teb_local_planner.yaml" command="load" />
-	<rosparam file="$(find turtlebot3_navigation)/param/dwa_local_planner_params_waffle_pi.yaml" command="load" />
-	  <remap from="cmd_vel" to="/cmd_vel"/>
-	  <remap from="odom" to="odom"/>
-	  <param name="DWAPlannerROS/min_vel_x" value="0.0" />
-	</node> -->
+	<!-- <rosparam file="$(find turtlebot3_gazebo)/config/dwa_local_planner.yaml" command="load" /> -->
+	  <remap from="cmd_vel" to="/cmd_vel" />
+	  <remap from="odom" to="odom" />
+	  <!-- <param name="DWAPlannerROS/min_vel_x" value="0.0" /> -->
+	</node>
 
 
 <!-- Goal Publisher Script -->
-<!-- <node name="goal_publisher_node" pkg="turtlebot3_gazebo" type="scripts/goal_publisher" output="screen"/> -->
+<node name="goal_publisher_node" pkg="turtlebot3_gazebo" type="human_track.py" output="screen"/>
 
 <!-- Rviz -->
 <node type="rviz" name="rviz" pkg="rviz" args="-d $(find turtlebot3_gazebo)/rviz/turtlebot3_gazebo_model.rviz"/>
