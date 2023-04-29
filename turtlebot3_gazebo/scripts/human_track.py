@@ -15,9 +15,18 @@ def movebase_client():
 	map_type = 'house'
 	
 	maps = dict()
-
 	locations = dict()
+
+	# for i in range(1,10):
+	# 	locations['Position'+str(i)] = Pose(Point(i/2, 0.5, 0.000), Quaternion(0.000, 0.000, 0.0, 0.001))
+	# for key, value in locations.items():
+	# 	print(key, ":", value)
+	
 	locations['Human'] = Pose(Point(1.0, 2.5, 0.000), Quaternion(0.000, 0.000, 0.75, 0.66))
+	locations['Top_right_room'] = Pose(Point(6.221, 0.633, 0.000), Quaternion(0.000, 0.000, -0.707, 0.707))
+	locations['Mid_left_room'] = Pose(Point(3.517, 4.541, 0.000), Quaternion(0.000, 0.000, 0.999, 0.000))
+	locations['Bottom_room'] = Pose(Point(-4.058, 3.444, 0.000), Quaternion(0.000, 0.000, 0.999, 0.000))
+	locations['Bottom_room_right'] = Pose(Point(-6.279, 2.025, 0.000), Quaternion(0.000, 0.000, -0.707, 0.707))
 	
 	maps['house'] = locations
 
