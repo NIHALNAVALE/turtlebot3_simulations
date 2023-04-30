@@ -5,6 +5,7 @@ import actionlib
 from actionlib_msgs.msg import *
 from geometry_msgs.msg import Pose, PoseWithCovarianceStamped, Point, Quaternion, Twist
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
+from turtlebot3_gazebo.msg import HumanPose
 
 def movebase_client():
 
@@ -22,11 +23,11 @@ def movebase_client():
 	# for key, value in locations.items():
 	# 	print(key, ":", value)
 	
-	locations['Human'] = Pose(Point(1.0, 2.5, 0.000), Quaternion(0.000, 0.000, 0.75, 0.66))
-	locations['Top_right_room'] = Pose(Point(6.221, 0.633, 0.000), Quaternion(0.000, 0.000, -0.707, 0.707))
-	locations['Mid_left_room'] = Pose(Point(3.517, 4.541, 0.000), Quaternion(0.000, 0.000, 0.999, 0.000))
-	locations['Bottom_room'] = Pose(Point(-4.058, 3.444, 0.000), Quaternion(0.000, 0.000, 0.999, 0.000))
-	locations['Bottom_room_right'] = Pose(Point(-6.279, 2.025, 0.000), Quaternion(0.000, 0.000, -0.707, 0.707))
+	locations['Human'] = Pose(Point(2.75, 2.0, 0.000), Quaternion(0.000, 0.000, 0.0, 0.01))
+	# locations['Top_right_room'] = Pose(Point(6.221, 0.633, 0.000), Quaternion(0.000, 0.000, -0.707, 0.707))
+	# locations['Mid_left_room'] = Pose(Point(3.517, 4.541, 0.000), Quaternion(0.000, 0.000, 0.999, 0.000))
+	# locations['Bottom_room'] = Pose(Point(-4.058, 3.444, 0.000), Quaternion(0.000, 0.000, 0.999, 0.000))
+	# locations['Bottom_room_right'] = Pose(Point(-6.279, 2.025, 0.000), Quaternion(0.000, 0.000, -0.707, 0.707))
 	
 	maps['house'] = locations
 
@@ -59,3 +60,5 @@ if __name__ == '__main__':
 		    rospy.loginfo("All Goals executed")
 	except rospy.ROSInterruptException:
 		rospy.loginfo("Navigation DONE ")
+
+	rospy.spin()

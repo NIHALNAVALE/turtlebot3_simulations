@@ -39,11 +39,11 @@
 	<!-- <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/> -->
 
 <!-- AMCL --> 
-	<include file="$(find turtlebot3_gazebo)/launch/amcl.launch">
-		<arg name="initial_pose_x" value="-1.0"/>
-		<arg name="initial_pose_y" value="0.5"/>
+	<!-- <include file="$(find turtlebot3_gazebo)/launch/amcl.launch">
+		<arg name="initial_pose_x" value="0.0"/>
+		<arg name="initial_pose_y" value="0.0"/>
 		<arg name="initial_pose_a" value="0.0"/>
-	</include>
+	</include> -->
 
 <!-- SLAM -->
   <!-- <include file="$(find turtlebot3_slam)/launch/turtlebot3_$(arg slam_methods).launch"> -->
@@ -80,7 +80,7 @@
 <!-- <node name="goal_publisher_node" pkg="turtlebot3_gazebo" type="human_track.py" output="screen"/> -->
 
 <!-- Goal Publisher Script for Relative positions of robot and human-->
-<node name="goal_publisher_node" pkg="turtlebot3_gazebo" type="robot_human_track.py" output="screen"/>
+<!-- <node name="goal_publisher_node" pkg="turtlebot3_gazebo" type="robot_human_track.py" output="screen"/> -->
 
 <!-- Rviz -->
 <node type="rviz" name="rviz" pkg="rviz" args="-d $(find turtlebot3_gazebo)/rviz/turtlebot3_gazebo_model.rviz"/>
